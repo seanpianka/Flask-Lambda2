@@ -36,7 +36,7 @@ We will create an endpoint named `get_users`; this is a endpoint which theoretic
     `pip install -t . flask-lambda2` (**Note**: Flask-Lambda2 is currently not available on pip)
 
 1. ##### Create AWS Lambda function with name `get_users`.
-    1. The HTTP method at the beginning of the name can any capitalization, but it will be transformed to lowercase.
+    **Note**: The HTTP method at the beginning of the name can any capitalization, but it will be transformed to lowercase. However, the "_route_to_desired_endpoint" string and its capitalization matter as that's what will be exactly translated into a URL rule.
 1. ##### Create a local file named `get_users.py` that contains the following boilerplate:
     ```python
     from flask_lambda2 import FlaskLambda
