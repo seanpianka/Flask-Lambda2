@@ -207,7 +207,6 @@ Translation Examples
 --------------------
 
 Route: get\_users -> GET /users/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. | Lambda Function Name:
    | ``get_users``
@@ -219,7 +218,6 @@ Route: get\_users -> GET /users/
    | ``app.route('/users/', methods=["GET"])``
 
 Route: post\_users\_contracts -> POST /users/contracts/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. | Lambda Function Name:
    | ``post_users_contracts``
@@ -231,7 +229,6 @@ Route: post\_users\_contracts -> POST /users/contracts/
    | ``app.route('/users/contracts/', methods=["POST"])``
 
 Route: delete\_users\_contracts\_id -> DELETE /users/contracts/<id>/
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Lambda Function Name:
    ``delete_users_contracts_id``
