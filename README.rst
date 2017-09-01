@@ -22,7 +22,7 @@ This scheme translates to the HTTP statement:
 
 Which then propagates to the following Flask endpoint:
 
-::
+.. code:: python
 
     app.route('/route/to/desired/endpoint/', methods=["HTTPMETHOD"])
 
