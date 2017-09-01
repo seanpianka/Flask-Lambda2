@@ -4,6 +4,13 @@ Flask-Lambda2
 Flask-Lambda2 is a python package to add a compatibility layer between a
 Flask application and AWS Lambda for creating RESTful applications.
 
+Installation
+============
+
+.. code:: bash
+
+    $ pip install flask-lambda2 
+
 Explanation
 -----------
 
