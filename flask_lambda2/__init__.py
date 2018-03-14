@@ -1,8 +1,6 @@
 from flask import Flask
 
 
-__all__ = ["FlaskLambda"]
-
 _IDEMPOTENT_METHODS = ["GET", "PUT", "DELETE", "HEAD", "OPTIONS"] # HTTP/1.1
 
 
@@ -11,18 +9,24 @@ class FlaskLambda(Flask):
         """ Compatibility layer to dispatch a request using a test client and
         data provided by AWS Lambda. This layer will still allows for requests
         to be dispatched through Flask's built-in request dispatch system.
+        Specifically, the calling convention requires that both the rule and
+        the method associated with the specific rule endpoint is specified
+        within the body of the data sent to the endpoint. Technically, all data
+        sent to the lambda route will be within the `dict`:event.
 
         :param event: Data sent by user or a WSGI environment
         :param context: AWS Lambda data or a callable accepting a status code,
                         a list of headers and an optional exception context to
                         start the response
         """
-        if not context.__dict__.get('function_name'):
+        if 'aws_request_id' not in context.__dict__:
             return super(FlaskLambda, self).__call__(event, context)
 
-        method, rule = context.__dict__['function_name'].split('_', 1)
-        rule = ''.join(['/', rule.replace("_", "/"), '/'])
-        method = method.lower()
+        method, rule = event['method'].lower(), event['route']
+        if not rule.startswith('/'):
+            rule = '/' + rule
+        if not rule.endswith('/'):
+            rule += '/'
 
         with self.test_client() as client:
             return self.make_response(getattr(client, method)(
